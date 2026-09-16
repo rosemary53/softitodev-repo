@@ -52,3 +52,44 @@ Silme işlemi gerçekleştikten sonra güncel kullanıcı listesi çıktısıne 
 
 ![SQL Kullanıcıyı silen sorgu kodu](images/delete_after_select.png)
 #### Şekil 7.Silme işleminden sonraki güncel kullanıcı listesi
+
+#
+### GÖREV 2:
+Kullanıcılara ait users tablosuna ve kullanıcıların siparişlerinin bulunduğu tabloya şekil 8'de yer verilmiştir.
+
+![SQL Users ve Orders Tablosundaki İlişki](images/users_orders.jpg)
+#### Şekil 8.Users ve Orders Tablolari
+
+#### INNER JOIN Gereksinimi açıklama
+'users' tablosundan kullaniciAdi, email bilgisi çekilip listelenmek istiyor.
+
+'orders' tablosundan ise ilgili kullanıcıya ait siparişin sipariş numarası alınıp listelenmek istiyor.
+
+Bu iki tablodan alınması gereken alanları listeleyebilmek için de iki tablo arasında bir ilişki kurulması gerekir. Yani bir tabloda melisa_kaya adlı kullanıcısı varsa diğer tabloda melisa_kaya adlı kullanıcısına ait kayıt/satır eşleştirilip o satırdaki istenen alanlar iki tablodan alınıp ekrana çıktı olarak verilmelidir.
+İşte bu isteği gerçekleştirmek için kullanılan komut ise INNER JOIN'dir.
+
+#### SQL INNER JOIN SORGUSU
+
+    SELECT users.kullaniciAdi,users.email,orders.siparis_numarasi FROM users 
+    INNER JOIN orders 
+    ON users.kullanici_id = orders.kullanici_id
+    
+#### SORGUNUN Parça Parça Açıklanması
+
+     SELECT users.kullaniciAdi, users.email, orders.siparis_numarasi
+
+    Açıklama:   Listelenmek istenen alanlar hangi tabloda bulunuyorsa burada tabloAdi.sutunAdi şeklinde belirtilmeli.
+    
+    FROM users
+
+    Açıklama: Sorguda ilk dikkate alınan tablomuz users tablosu
+
+    INNER JOIN orders 
+
+    Açıklama: orders tablosunu da bu işleme tabi tut yani ilişkilendir.
+
+    ON users.kullanici_id = orders.kullanici_id
+
+    Açıklama: iki tablodaki değerleri karşılaştır .Eşit olanları eşleştir ve ilgili satırı geri döndür. Geriye dönen satırdanda geriye en başta istenen alanları döndür.
+
+    Örneğin : users tablosundan 2.satır + orders tablosundan 2.satır döner. Ardından users tablosundan dönen satırdan kullaniciAdi,email orders tablosundan dönen satırdan siparis_numarasi alani dikkate alınır.
