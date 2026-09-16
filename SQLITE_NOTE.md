@@ -73,7 +73,7 @@ Bu iki tablodan alınması gereken alanları listeleyebilmek için de iki tablo 
     SELECT users.kullaniciAdi,users.email,orders.siparis_numarasi FROM users 
     INNER JOIN orders 
     ON users.kullanici_id = orders.kullanici_id
-    
+
 #### SORGUNUN Parça Parça Açıklanması
 
      SELECT users.kullaniciAdi, users.email, orders.siparis_numarasi
@@ -93,3 +93,56 @@ Bu iki tablodan alınması gereken alanları listeleyebilmek için de iki tablo 
     Açıklama: iki tablodaki değerleri karşılaştır .Eşit olanları eşleştir ve ilgili satırı geri döndür. Geriye dönen satırdanda geriye en başta istenen alanları döndür.
 
     Örneğin : users tablosundan 2.satır + orders tablosundan 2.satır döner. Ardından users tablosundan dönen satırdan kullaniciAdi,email orders tablosundan dönen satırdan siparis_numarasi alani dikkate alınır.
+
+
+### GÖREV 3: MOBİL UYGULAMA GÜVENLİĞİ
+
+### GÖREV 3.1:Ekran görüntüsü ve ekran kaydı
+
+    Kullanıcıya ait banka/kredi kartı bilgilerinin (kart no,cvv,bakiye) ekran görüntüsünün veya ekran kaydının sızmasını engeller. Aynı zamanda kötü niyetli uygulamaların verileri çalmasını engeller.
+
+    Android : WindowManager/FlagSecure
+    IOS: UIScreen.isCaptured
+    Ekran simsiyah blur görünür.
+
+### GÖREV 3.2:Overlay Saldırısı
+     
+    Kullanıcı mobil bankacılık uygulamasını açar ve para transferi işlemlerinde havale işlemlerinde gerçekten o sayfada işlem yaptığını sanar ancak durum burada farklıdır. Kötü niyetli kişiler gerçek ekranın üzerine birebir aynı arayüzü yerleştirir. Kullanıcı işlemi tamamlamak için onayla tuşuna basınca saldırganın belirlediği ibana para transferi gerçekleşir. Ya da kart bilgileri kullanıcıya geçer. Kullanıcı o an bunu fark etmez.
+    
+### GÖREV 4: ROOT/JAILBREAK RİSKİ
+    Root(android) veya Jailbreak(IOS), işletim sisteminin güvenlik kısıtlamalarını ortadan kaldırır.
+
+    Uygulama izolasyon koruması devre dışı kalır; diğer uygulamalar bankacılık uygulamasının dosyalarına ve belleğine erişebilir.
+
+    Kötü niyetli uygulamalar yönetici (root) yetkisiyle çalışarak şifreleme anahtarlarını, token'ları ve oturum bilgilerini okuyabilir.
+
+    SSL pinning, tamper detection gibi korumalar baypas edilebilir; trafik dinlenebilir.
+
+#### Örnek:
+    Saldırgan, root'lu cihaza kötü niyetli bir uygulama yükler. Bu uygulama, bankacılık uygulamasının /data/data/com.banka.app/ dizinindeki oturum token'ını veya shared_prefs içindeki şifrelenmiş kimlik bilgilerini root yetkisiyle okur. Böylece kullanıcının şifresini bilmeden hesabına erişip para transferi yapabilir. Normal bir cihazda sandbox bu erişimi engellerdi.
+
+### GÖREV 5: SQLite ve şifreleme
+
+#### Normal Sqlite:
+     
+     Veritabanı şifresiz olduğu için kullanıcıya ait bilgiler(şifre,kart no,cvv vb.) düz yazı formatında gözükür. Cihazın kaybolması durumunda root işlemi yapılırsa kötü niyetli kişi veri tabanı dosyasına erişip kopyalayıp SQlite ile açabilir ve tüm bilgileri doğrudan okuyabilir yani anlaşılır formdadır çünkü şifrelenmemiştir.
+       
+#### SQLCipher Kullanıldığında
+
+     SQLCipher veritabanının tamamını AES ile şifreler. Veriler diske yazılırken şifrelenir, okunurken çözülür. Saldırgan dosyayı çalsa bile anahtar olmadan içeriği göremez.Yani kısaca: dosya çalınsa bile veriler okunamaz hale gelir. Anahtar güvenli bir yerde saklanırsa koruma daha da güçlenir. Sadece anlamasız veriler görür.
+### GÖREV 6.Access Token / Refresh Token
+#### Access Token:
+    Kullanıcının API'ye istek yaparken kimliğini kanıtlayan kısa ömürlü anahtardır. Süresi dolunca kullanılamaz.
+
+#### Refresh Token:
+    Access Token'ın süresi bittiğinde yeni bir Access Token almak için kullanılan uzun ömürlü anahtardır.
+
+#### Access Token neden kısa süreli?
+    Çalınırsa saldırganın elinde çok kısa süre kalır, süresi dolunca işe yaramaz. Bu yüzden riski düşüktür, kısa tutulur.
+
+#### Refresh Token neden daha güvenli yerde saklanmalı?
+    Uzun süre geçerli olduğu için çalınırsa saldırgan sürekli yeni Access Token alıp hesaba erişebilir. Bu yüzden Keystore/Keychain gibi güvenli alanda tutulur, normal yerde bırakılmaz.
+
+#### Çıkışta neden iptal edilir?
+    Kullanıcı çıkış yaptığında Refresh Token hâlâ geçerli olursa, biri onu ele geçirip tekrar giriş yapmış gibi yeni token alabilir. İptal edilince o token bir daha çalışmaz, oturum tamamen kapanır.
+
