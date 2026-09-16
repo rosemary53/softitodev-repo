@@ -9,14 +9,14 @@ local_shoppier.db adında bir veri tabanı oluşturuldu. Bu veri tabanına users
 -> Tablo = users
 
 ![SQL Veri tabanı ve tablo oluşturma](images/db_table_create.png)
-Şekil 1.Veri tabani ve Tablo Oluşturma Kodları
+#### Şekil 1.Veri tabani ve Tablo Oluşturma Kodları
 
 ### GÖREV 1.2: 3 adet kullanıcı ekleme
 
 Bu görevde users tablosuna kaç adet kullanıcı eklenmesi gerektiği bilgisi dinamik bir şekilde alındı ardından bu kullanıcı sayısı kadar işlem yapan bir for döngüsü kuruldu. For döngüsü içerisinde de users tablosunda boş bırakılması yasak yani NOT NULL olan özellikler yine dinamik olarak alındı. Alınan bu veriler users tablosuna kaydedildi. Yapılan işlemleri gerçekleştiren python kodlarına ve çalışan koda ait çıktılara Şekil 2'de yer verildi.
 
 ![SQL Kullanıcı Ekleme](images/insert_user.png)
-Şekil 2.Kullanıcı Ekleme Kaynak Kodu Çıktısı
+#### Şekil 2.Kullanıcı Ekleme Kaynak Kodu Çıktısı
 
 ### GÖREV 1.3: Kullanıcıları Listeleme
 
@@ -24,7 +24,7 @@ users tablosunda bulunan verileri çekmek için kullanılan sorgu koduna Şekil 
 
 ![SQL Kullanıcı Listeleme Sorgusu](images/select_user.png)
 ![SQL Tablodaki tüm kullanıcıların listelenmesi](images/select.png)
-Şekil 3.Kullanıcı Listeleme Sorgu Kodu Çıktısı
+#### Şekil 3.Kullanıcı Listeleme Sorgu Kodu Çıktısı
 
 ### GÖREV 1.4: Kullanıcının email bilgisini güncelleme
 
@@ -33,22 +33,22 @@ users tablosunda bulunan verileri çekmek için kullanılan sorgu koduna Şekil 
 users tablosunda belirli bir kullanıcıya ait email bilgisini güncelleme sorgusu koduna Şekil 4'te yer verilmiştir. 
 
 ![SQL Kullanıcı alan güncelleme sorgu kodu](images/update.png)
-Şekil 4.Varlık örneğine ait özelliğin güncellenmesindeki sorgu kodu
+#### Şekil 4.Varlık örneğine ait özelliğin güncellenmesindeki sorgu kodu
 
 Güncellendikten sonraki kullanıcı listesine ise Şekil 5'te yer verilmiştir.
 
 
 ![SQL Güncel kullanıcı listesi](images/update_select.png)
-Şekil 5.Güncel kullanıcı listesi
+#### Şekil 5.Güncel kullanıcı listesi
 
 ### GÖREV 1.5: Kullanıcının tablodan silinmesi
 Ön Bilgi: Bir veri tabanında tabloda bulunan varlık örneğini yani kullanıcıyı silmek için kullanılan komut DELETE komutudur. 
 
 users tablosunda belirli bir kullanıcıyı silmede kullanılan sorgu koduna Şekil 6'da yer verilmiştir.
 ![SQL Kullanıcıyı silen sorgu kodu](images/delete.png)
-Şekil 4.Kullanıcıyı silmede kullanılan sorgu kodu
+#### Şekil 6.Kullanıcıyı silmede kullanılan sorgu kodu
 
 Silme işlemi gerçekleştikten sonra güncel kullanıcı listesi çıktısıne ise Şekil 7'de yer verilmiştir.
 
 ![SQL Kullanıcıyı silen sorgu kodu](images/delete_after_select.png)
-Şekil 4.Silme işleminden sonraki güncel kullanıcı listesi
+#### Şekil 7.Silme işleminden sonraki güncel kullanıcı listesi
