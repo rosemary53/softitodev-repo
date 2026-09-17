@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kodvance - Mobil Teknoloji Bülteni</title>
+</head>
+
+<body>
+    <header>
+        <h1> Kodvance - Mobil Teknoloji Bülteni</h1> <!--H1 etiketi her sayfaya özel 1 kez kesinlikle olmak zorunda ama 1 kez olmalı.Google 2.kez girdiğimizi görürse sayfayı anlamlandıramıyor.-->
+        <p> Geleceğin Yazılım Teknolojileri Hakkında Güncel Bilgiler</p>
+        <nav aria-label="Ana Menü">
+            <ul> <!-- Etiketli ,sırasız liste oluşturmak-->
+                <li><a href="#haberler"> Son Haberler</a> </li>
+                <li><a href="#kurslar">Son kurslar</a> </li>
+                <li><a href="#iletisim">İletişim</a> </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article id="haberler">
+            <header>
+                <h2>Flutter 4.0 ve Mobil Devrimi</h2>
+                <time datetime="2026-09-17"> 17 Eylül 2026</time>
+                <p>Yazar:<strong>Selahaddin ÇİFTÇİ</strong></p>
+            </header>
+            <section> <!--Bölüm etiketi:-->
+                <h3>wasm ile 120 fps web deneyimi</h3>
+                <p>Google,Flutter 4.0 sürümünü duyurdu.</p>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1782849324103-27ac920d0051?q=80&w=1124&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Flutter ile mobil geliştirme" width="100%" loading="lazy"> <!-- Her image ın alt etiketi yani neyi ifade ettiğini bildirdiği şey olmak zorunda-->
+                    <figcaption> Flutter 4.0 ile mobil uygulama geliştirme
+                    </figcaption>
+                </figure>
+            </section>
+            <section> <!-- Yorumlar Bölümü-->
+                <h3>Mühendislik Yorumları</h3>
+                <blockquote>
+                    <p>
+                        Van gogh ay çiçeği tarlaları çizmeyi çok severdi.
+                    </p>
+                </blockquote>
+            </section>
+        </article>
+        <section id="kurslar">
+            <h2>Haftalık Canlı Eğitim Programı</h2>
+            <table border="1" width="100%">
+                <thead><!--Tablonun en üst satırındaki başlık alanlarını gruplayan-->
+                    <tr> <!--Tablonun başlık kısmındaki satır-->
+                        <td>Gün</td> <!--Tablodaki her bir hücreyi alanı-->
+                        <td>Modül</td>
+                        <td>Saat</td>
+                        <td>Eğitmen</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Çarşamba</td>
+                        <td>Mobil Uygulama Güvenliği ve Veri Tabanı</td>
+                        <td>09.00 - 17.00</td>
+                        <td>Selahaddin ÇİFTÇİ</td>
+                    </tr>
+                    <tr>
+                        <td>Perşembe</td>
+                        <td>Veritabanı İlişkileri ve HTML5</td>
+                        <td>09.00 - 17.00</td>
+                        <td>Selahaddin ÇİFTÇİ</td>
+                    </tr>
+                </tbody>
+                <tfoot><!--Tablonun özeti-->
+                    <tr>
+                        <td colspan="4">Toplam Haftalık Eğitim Saati: 40 Yapar.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <aside>
+            <h3>Önerilen Kaynaklar</h3>
+            <ul> <!--Dışarıya verdiğimiz her link target_link özelliği almalı güvenlik açısından-->
+                <li><a href="https://flutter.dev/docs" target="_blank">
+                        Flutter Dokumantasyonu</a></li>
+                <li><a href="https://pub.dev/" target="_blank">
+                        Flutter Paket Deposu</a></li>
+            </ul>
+        </aside>
+    </main>
+    <footer id="iletisim">
+        <p> 2026 Kodvance SoftIto 4.Dönem Mobil Geliştirici Programı.Tüm Hakları Saklıdır.</p>
+        <address>
+            İletişim: <a href="mailto:info@kodvance.com">info@kodvance.com</a><br>
+            Dünya Ticaret Merkezi (DTM),Yeşilköy İstanbul
+        </address>
+    </footer>
+</body>
+
+</html>
