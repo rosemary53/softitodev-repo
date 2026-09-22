@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Ticaret Ürün Detay & Sepet Arayüzü</title>
+
+
+    <style>
+
+        *,
+        *::before,
+        *::after{
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0;    
+        }
+
+        :root {
+             --primary: #273c75;     
+             --primary-dark: #192a56;  
+             --accent: #fbc531;       
+             --bg: #ffffff;           
+             --surface: #f4f7fb;       
+             --surface-light: #d1d9e9; 
+             --text: #1e272e;         
+             --text-muted: #718093;   
+        }
+
+        body{
+              font-family: 'Times New Roman', Times, serif;
+              background-color: var(--bg);
+              color: var(--text);
+              display: flex;
+              justify-content: center;
+              min-height: 100hv;
+              padding: 16px;
+        }
+
+        .phone-container{
+              width: 100%; 
+              max-width: 480px;
+              background: var(--surface);
+              border-radius: 30px;
+              overflow: hidden;
+              border: 1px solid var(--surface-light);
+              display: flex;
+              flex-direction: column;
+              position: relative;
+        }
+
+        .top-bar{
+             position: sticky;
+             top: 0;
+             z-index: 50;
+             background: var(--surface);
+             backdrop-filter: blur(10px);
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 18px 10px;
+             border-bottom: 2px solid var(--surface-light);
+        }
+        .sayfa-baslik{
+             font-size: 18px;
+             font-weight: 600;
+             color: var(--text);
+             letter-spacing: 0.5px;
+        }
+        .geri-tusu,
+        .paylasma-tusu{
+             width: 40px;
+             height: 40px;
+             background: none;
+             font-size: 20px;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             cursor: pointer;
+             transition: background-color 0.2s ease;
+             border-radius: 50%;
+             color: var(--text);
+        }
+        .geri-tusu:hover,
+        .paylasma-tusu:hover{
+              background-color: var(--accent)
+        }
+          
+        .urun-detay-gorsel{
+             position: relative;
+             width: 100%;
+             height: 300px;
+             display: flex;
+             justify-content: center;
+             background:#e2e8f0;
+        }
+        
+        .urun-oge-resim img{
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+        }
+        .indirim-rozeti{
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: var(--accent);
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+           
+        .urun-detay-bilgi {
+             
+              padding: 24px 20px 90px 20px;
+              display: flex;
+              flex-direction: column;
+              gap: 20px; 
+        }
+        .baslik-alani{
+              display: flex;
+              flex-direction: column;
+              gap: 6px;
+        } 
+        .urun-baslik{
+              font-size: 20px;
+              font-weight: 700;
+              color: var(--text);
+              margin: 0;
+        }
+
+        .urun-altbaslik{
+              font-size: 14px;
+              color: var(--text-muted);
+              margin: 0;
+        }
+        .fiyat-alani {
+              display: flex;
+              align-items: baseline; 
+              gap: 12px;
+        }
+
+        .guncel-fiyat {
+              font-size: 24px;
+              font-weight: 700;
+              color: #180e43;
+        }
+
+        .eski-fiyat {
+              font-size: 14px;
+              font-weight: 600;
+              color: #a0a0a0;
+        }
+
+        .aciklama-alani {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+        }
+
+        .aciklama-baslik {
+              font-size: 15px;
+              font-weight: 700;
+              color: var(--text);
+              margin: 0;
+        }
+
+        .aciklama-metni {
+              font-size: 14px;
+              color: var(--text-muted);
+              margin: 0;
+         }
+        .boyut-secimi {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .boyut-baslik {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .cip-listesi {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .cip {
+            padding: 8px 16px;
+            border: 2px solid var(--text);
+            background: transparent;
+            color: var(--text); 
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cip:hover{
+            background:var(--accent);
+        }
+
+        .alt-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg);
+            border-top: 1px solid var(--surface-light);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .alt-bar-fiyat {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .alt-bar-buton {
+            background-color: #494544f8;
+            color: white;
+            border: 2px solid var(--text);
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .alt-bar-buton:hover {
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+
+      <div class ="phone-container">
+        
+           <!--sticky üst bar-->
+           <header class= "top-bar"> 
+                <button class="geri-tusu">く</button>
+                <button class="paylasma-tusu">↪</button>
+            </header>
+
+           <!--Ürün görsel detay bölümü ekledim-->
+           <section  class = "urun-detay-gorsel">
+                <span class="indirim-rozeti">%20 indirim</span>
+                <img src="C:\Users\MSI\Documents\GitHub\softitodev-repo\22_Eylül_Odev\resim_1.jpg" alt="Van Gogh Yıldızlı Gece Tablosu">
+           </section>
+
+
+           <!--Ürün detay bilgi bölümü-->
+           <section class="urun-detay-bilgi">
+               <div class="baslik-alani">
+                  <h3 class="urun-baslik">Yıldızlı Gece Tablosu</h3>
+                  <p class ="urun-altbaslik">by Vincent van Gogh</p>
+               </div>
+               
+               <div class="fiyat-alani">
+                  <span class="guncel-fiyat">1.750 TL</span>
+                  <span class="eski-fiyat">2.190 TL</span>
+               </div>
+
+               <div class="aciklama-alani">
+                  <h3 class="aciklama-baslik">Açıklama</h3>
+                  <p class="aciklama-metni">
+                     Tarihin en ünlü eserlerinden biri olan Yıldızlı Gece, evinize sanatın büyüleyici dokunuşunu getiriyor. Orijinaline sadık kalınarak yüksek çözünürlüklü olarak kanvasa basılmıştır.
+                  </p>
+               </div>
+  
+               <div class="boyut-secimi">
+                     <h4 class="boyut-baslik">Boyut Seçimi</h4>
+                    <div class="cip-listesi">
+                        <button class="cip">35x50 cm</button>
+                        <button class="cip">50x70 cm</button>
+                        <button class="cip">70x100 cm</button>
+                    </div>
+               </div>
+           </section>
+
+           <div class="alt-bar">
+              <div class="alt-bar-sol">
+                <span class="alt-bar-fiyat">1.750 TL</span>
+              </div>
+                <button class="alt-bar-buton">Sepete Ekle</button>
+           </div>
+
+      </div>
+
+</body>
+</html>
