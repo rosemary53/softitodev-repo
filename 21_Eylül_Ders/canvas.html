@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=,, initial-scale=1.0">
+    <title>Canvas Tuvali</title>
+</head>
+
+<body style="font-family: sans-serif; padding: 20px;">
+
+    <h3> HTML5 TUvaline İlk Fırçamızı Atalım</h3>
+    <!--Canvas: bir tuvaldir.-->
+    <canvas id="myTuval" width="320" height="140" style="border:2px dashed #94a3b8; border-radius: 8px;
+    "></canvas>
+
+    
+<script>
+     //1.Tuval ve Fırçamızı alalım
+     const tuval = document.getElementById('myTuval');
+     const firca = tuval.getContext('2d');
+
+     //2.Dikdörtgen bir boya mavi :Logo ve benzeri yerlerde kullanırız.
+     firca.fillStyle = '#2563eb'; //içine renk verdik
+     firca.fillRect(30,25,260,90);  //verilen koordinatların içini boyasın dedik.
+
+
+     //3.Üzerine beyaz yazı yazalım
+     firca.fillStyle = '#ffffff';
+     firca.font = 'bold 20px sans-serif';
+     firca.fillText('Merhaba Htlm5 Canvas!',45,75)
+
+</script>
+
+</body>
+
+</html>
