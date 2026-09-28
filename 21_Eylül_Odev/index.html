@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Tanıtımı</title>
+
+    <style>
+
+        *,*::before,*::after{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            flex-direction: column;
+            padding: 16px;
+            align-items: center;
+        }
+
+        .player-container{
+            position: relative;
+            background: gray;
+            width: 100;
+            max-width: 640px;
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 8px;
+        }
+
+        .custom-controls{
+            display: flex;
+            flex-direction: column;
+        }
+        /* btn group içinde 2 adet kutu var.
+          Display flex yaparak bu iki kutu yan yana gelmiş oldu.
+        */
+        .btn-group{
+            display: flex;
+            background: yellow;
+        }
+        .left-group{
+            background: green;
+            padding: 8px;
+        }
+        .right-group{
+            background: purple;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <h2> Mop Tanıtımı</h2>
+
+    <!--Ürün hakkında video içeriği-->
+    <div class="player-container" id="videoBox">
+        <!--Sayfa video eklemek için <video> etiketi kullanılır. video ile ilgi js veya css işlemleri için benzersiz id verilir.
+            playsinline: Videonun tam ekran yerine bir kutu içinde oynatılmasına izin verir.
+            webkit+playinline: IOS/safari sürümleri için videonun kutu içinde oynatılmasını sağlar.
+            preload: Ön yükleme yani videonun tamamını şimdiden indirmez temel bilgileri(metadata) yükler.
+            -->
+
+        <video id="productVideo" playsinline webkit-playinline preload="metadata">
+
+            <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+            <source src="https://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
+            Tarayıcınız video formatlarını desteklemiyor.
+        </video>
+        
+        <!--Kontrol panelinin kapsayıcısı-->
+        <div class="custom-controls">
+              <!--Video ilerleme çubuğu ve süre bilgileri-->
+              <div class="timeline-container">
+                   <!--Videonun şu anki zamanı: başlangıçta 00.00'dır ancak JS kodları ile değeri değişecek-->
+                   <span id="currentTime">00:00</span>
+
+                   <!--Kullanıcının sürükleyebileceği bir çubuk ve süre geçince değeri değişen bir çubuk -->
+                   <!--Başlangıçta value :0 dır-->
+                   <input class="progress-bar" id="progressBar" type="range" min="0" max="100" value="0">
+
+                   <!--Videonun toplam süresi başlangıçta varsayılan olarak 00:00-->
+                   <span id="durationTime">00:00</span>
+              </div>
+
+              <!--Hızlandırma,sesli sessiz,10 sn geri sarma ileri sarma butonları-->
+              <div class="btn-group">
+                   <!--Sol tarafta bulunacak butonlar : Oynat ve sesli-->
+                   <div class="left-group">
+                        <button id="playBtn">Oynat</button>
+                        <button id="voiceBtn">Sesli</button>
+                   </div>
+
+                   <!--Sağ tarafta bulunacak butonlar: Hızlandırma,Pip,Tam Ekran,İleri ve Geri-->
+                   <div class="right-group">
+                       <button id="speedBtn">1x</button>
+                       <button id="pipBtn">Pip</button>
+                       <button id="screenBtn">Tam Ekran</button>
+                   </div>
+              </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
