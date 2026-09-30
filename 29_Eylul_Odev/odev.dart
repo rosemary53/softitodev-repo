@@ -188,5 +188,5 @@ void main() {
   } on CihazErisilemezException catch (err) {
     print("Hata meydana geldi : $err");
   }
-  print("\n-----------------------------------------------------");
+  print("\n-----------------------------------------------------\n");
 }
